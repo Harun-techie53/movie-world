@@ -1,6 +1,7 @@
 import React from "react";
 import Searchbar from "./Searchbar";
 import Titlebar from "../shared/Titlebar";
+import { Link } from "react-router-dom";
 
 const Header = () => {
   return (
@@ -11,9 +12,9 @@ const Header = () => {
         <div>
           <p className="text-white">Get Pro</p>
         </div>
-        <div>
+        <Link to="/movies">
           <p className="text-white">Movies</p>
-        </div>
+        </Link>
         <div>
           <p className="text-white">Watch-list</p>
         </div>

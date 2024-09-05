@@ -3,6 +3,9 @@ import Header from "./components/Header";
 import { Route, Routes } from "react-router-dom";
 import HomeScreen from "./screens/HomeScreen";
 import MovieDetailsScreen from "./screens/MovieDetailsScreen";
+import { useContext } from "react";
+import { MovieContext } from "./context/MovieContext";
+import MoviesScreen from "./screens/MoviesScreen";
 
 function App() {
   return (
@@ -12,6 +15,7 @@ function App() {
         <div className="mt-20">
           <Routes>
             <Route path="/movies/:id" element={<MovieDetailsScreen />} />
+            <Route path="/movies" element={<MoviesScreen />} />
             <Route path="/" element={<HomeScreen />} />
           </Routes>
         </div>

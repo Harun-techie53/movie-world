@@ -1,8 +1,19 @@
 import React, { useRef } from "react";
 import MoviesCardCarousel from "../../shared/MoviesCardCarousel";
+import SkeletonMovieCard from "../../shared/SkeletonMovieCard";
 
-const WatchlistMoviesSection = () => {
+const WatchlistMoviesSection = ({ movies, isLoading }) => {
   const sliderRef = useRef();
+
+  if (isLoading) {
+    return (
+      <div className="flex items-center space-x-14">
+        {[1, 2, 3, 4, 5].map((item) => (
+          <SkeletonMovieCard />
+        ))}
+      </div>
+    );
+  }
 
   return (
     <div className="space-y-6">
@@ -12,7 +23,17 @@ const WatchlistMoviesSection = () => {
           <p className="text-yellow-500">WATCH-LIST</p>
         </div>
       </div>
-      <MoviesCardCarousel sliderRef={sliderRef} type={"WATCHLIST"} />
+      {movies.length > 0 ? (
+        <MoviesCardCarousel
+          sliderRef={sliderRef}
+          type={"WATCHLIST"}
+          movies={movies}
+        />
+      ) : (
+        <div className="text-2xl text-red-600 text-center bg-red-500 bg-opacity-20 p-5">
+          No Movies Found
+        </div>
+      )}
     </div>
   );
 };

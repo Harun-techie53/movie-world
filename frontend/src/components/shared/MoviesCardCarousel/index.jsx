@@ -1,10 +1,9 @@
 import React from "react";
 import MovieCard from "../MovieCard";
 import Slider from "react-slick";
-import { moviesImages } from "../../../dev-data/images";
 import { IoChevronBackSharp, IoChevronForward } from "react-icons/io5";
 
-const MoviesCardCarousel = ({ type, sliderRef }) => {
+const MoviesCardCarousel = ({ type, sliderRef, movies }) => {
   var settings = {
     dots: true,
     infinite: false,
@@ -49,17 +48,17 @@ const MoviesCardCarousel = ({ type, sliderRef }) => {
             type === "RATING" && "-bottom-[68%]"
           } ${type === "WATCHLIST" && "-bottom-[120%]"} -bottom-[68%] ${
             type === "RATING" && "md:-bottom-[60%]"
-          } ${type === "WATCHLIST" && "md:-bottom-[110%]"}`}
+          } ${type === "WATCHLIST" && "md:-bottom-[120%]"}`}
           onClick={() => sliderRef.current.slickPrev()}
         >
           <IoChevronBackSharp size={24} />
         </button>
         <button
-          className={`btn btn-square bg-white absolute z-20 right-0 md:right-[13%] ${
+          className={`btn btn-square bg-white absolute z-20 right-0 md:right-[12%] ${
             type === "RATING" && "-bottom-[68%]"
           } ${type === "WATCHLIST" && "-bottom-[120%]"} -bottom-[68%] ${
             type === "RATING" && "md:-bottom-[60%]"
-          } ${type === "WATCHLIST" && "md:-bottom-[110%]"}`}
+          } ${type === "WATCHLIST" && "md:-bottom-[120%]"}`}
           onClick={() => sliderRef.current.slickNext()}
         >
           <IoChevronForward size={24} />
@@ -72,11 +71,10 @@ const MoviesCardCarousel = ({ type, sliderRef }) => {
     <div className="slider-container">
       {renderCarouselArrows()}
       <Slider {...settings} ref={sliderRef}>
-        {moviesImages.map((movie) => (
+        {movies.map((movie) => (
           <MovieCard
-            key={movie.id}
-            title={movie.title}
-            imagePath={movie.path}
+            key={movie._id}
+            movie={movie}
           />
         ))}
       </Slider>
